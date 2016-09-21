@@ -1,0 +1,80 @@
+sort函数是list列表中的函数，而sorted可以对list或者iterator进行排序
+二、sort和sorted的比较
+1、用sort函数对列表排序时会影响列表本身，而sorted不会
+举例：
+	>>> a = [1,2,1,4,3,5] 	>>> a.sort() 	>>> a 	[1, 1, 2, 3, 4, 5]
+
+	>>> a = [1,2,1,4,3,5] 	>>> sorted(a) 	[1, 1, 2, 3, 4, 5] 	>>> a 	[1, 2, 1, 4, 3, 5]
+
+
+2、sorted(iterable，cmp，key，reverse）
+参数：iterable可以是list或者iterator；
+cmp是带两个参数的比较函数；
+key 是带一个参数的函数；
+reverse为False或者True；
+举例说明
+（1）用cmp函数排序
+	>>> list1 = [('david', 90), ('mary',90), ('sara',80),('lily',95)] 	>>> sorted(list1,cmp = lambda x,y: cmp(x[0],y[0])) 	[('david', 90), ('lily', 95), ('mary', 90), ('sara', 80)] 	>>> sorted(list1,cmp = lambda x,y: cmp(x[1],y[1])) 	[('sara', 80), ('david', 90), ('mary', 90), ('lily', 95)]
+
+（2）用key函数排序
+	>>> list1 = [('david', 90), ('mary',90), ('sara',80),('lily',95)] 	>>> sorted(list1,key = lambda list1: list1[0]) 	[('david', 90), ('lily', 95), ('mary', 90), ('sara', 80)] 	>>> sorted(list1,key = lambda list1: list1[1]) 	[('sara', 80), ('david', 90), ('mary', 90), ('lily', 95)]
+
+（3）用reverse排序
+	>>> sorted(list1,reverse = True) 	[('sara', 80), ('mary', 90), ('lily', 95), ('david', 90)]
+
+（4）用operator.itemgetter函数排序
+>>> from operator import itemgetter >>> sorted(list1, key=itemgetter(1)) [('sara', 80), ('david', 90), ('mary', 90), ('lily', 95)] >>> sorted(list1, key=itemgetter(0)) [('david', 90), ('lily', 95), ('mary', 90), ('sara', 80)]
+
+介绍operator.itemgetter函数
+		>>> import operator 		>>> a = [1,2,3] 		>>> b = operator.itemgetter(0) 		>>> b(a) 		1 
+
+operator.itemgetter函数获取的不是值，而是定义了一个函数。  
+（5）多级排序
+>>>   sorted(list1,   key=itemgetter(0,1))
+[('david',  90),  ('lily',  95),  ('mary',  90),  ('sara',  80)]
+
+argsort函数
+argsort函数返回的是数组值从小到大的索引值
+
+Examples
+--------
+One dimensional array:一维数组
+
+>>> x = np.array([3, 1, 2])
+>>> np.argsort(x)
+array([1, 2, 0])
+
+Two-dimensional array:二维数组
+
+>>> x = np.array([[0, 3], [2, 2]])
+>>> x
+array([[0, 3],
+[2, 2]])
+
+>>> np.argsort(x, axis=0) #按列排序
+array([[0, 1],
+[1, 0]])
+
+>>> np.argsort(x, axis=1) #按行排序
+array([[0, 1],
+[0, 1]])
+#######################################
+
+例1：
+
+>>> x = np.array([3, 1, 2])
+>>> np.argsort(x) #按升序排列
+array([1, 2, 0])
+>>> np.argsort(-x) #按降序排列
+array([0, 2, 1])
+>>> x[np.argsort(x)] #通过索引值排序后的数组
+array([1, 2, 3])
+>>> x[np.argsort(-x)]
+array([3, 2, 1])
+另一种方式实现按降序排序：
+
+>>> a = x[np.argsort(x)]
+>>> a
+array([1, 2, 3])
+>>> a[::-1]
+array([3, 2, 1]) 
