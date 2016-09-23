@@ -24,6 +24,20 @@ def classify0(inX, dataSet, labels,k):
 	sortedClassCount = sorted(classCount.iteritems(),key=operator.itemgetter(1),reverse=True)
 	return sortedClassCount[0][0]
 
+def file2matrix(filename):
+	fr = open(filename)
+	arrayOfLines = fr.readlines()
+	numOfLines = len(arrayOfLines)
+	returnMat = np.zeros((numOfLines, 3))
+	classLabelVector = []
+	index = 0
+	for line in arrayOfLines:
+		line = line.trip()  #去除每行后面的换行符
+		listFromLine  = line.split('\t')
+		returnMat[index:] = listFromLine[0:3]
+		classLabelVector.append(int(listFromLine[-1]))
+	return returnMat, classLabelVector
+
 if __name__ == '__main__':
 	group,labels = createDataSet()
 	test = classify0([0.2,0.2],group,labels,3)
