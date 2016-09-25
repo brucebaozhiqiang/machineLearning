@@ -1,0 +1,23 @@
+min is : [  2.84880000e+04   1.05285550e+01   1.30484400e+00]
+max is : [  2.84880000e+04   1.05285550e+01   1.30484400e+00]
+bzq ranges  [ 0.  0.  0.]
+the classifier came back with: 1, the real answer is: 3
+total result is: 0.100000
+the classifier came back with: 1, the real answer is: 2
+total result is: 0.200000
+the classifier came back with: 1, the real answer is: 1
+total result is: 0.200000
+the classifier came back with: 1, the real answer is: 1
+total result is: 0.200000
+the classifier came back with: 1, the real answer is: 1
+total result is: 0.200000
+the classifier came back with: 1, the real answer is: 1
+total result is: 0.200000
+the classifier came back with: 1, the real answer is: 3
+total result is: 0.300000
+the classifier came back with: 1, the real answer is: 3
+total result is: 0.400000
+the classifier came back with: 1, the real answer is: 1
+total result is: 0.400000
+the classifier came back with: 1, the real answer is: 3
+total result is: 0.500000
