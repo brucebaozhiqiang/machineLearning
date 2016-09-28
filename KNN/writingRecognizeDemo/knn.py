@@ -80,7 +80,7 @@ def img2vector(filename):
 	for i in range(32):
 		lineStr = fr.readline()
 		for j in range(32):
-			returnVect[0,32*i*j] = int(lineStr[j])
+			returnVect[0,32*i+j] = int(lineStr[j])
 	return returnVect
 
 def handwritingClassTest():
@@ -90,7 +90,7 @@ def handwritingClassTest():
 	trainingMat = np.zeros((m,1024))
 	for i in range(m):
 		fileNameStr = trainingFileList[i]
-		fileStr = fileNameStr.split('.')[0]
+		fileStr = fileNameStr.split('.')[0]	
 		classNumStr = int(fileStr.split('_')[0])
 		hwLabels.append(classNumStr)
 		trainingMat[i,:] = img2vector('trainingDigits/%s' %fileNameStr)
@@ -101,6 +101,7 @@ def handwritingClassTest():
 	for i in range(mTest):
 		fileNameStr = testFileList[i]
 		fileStr = fileNameStr.split('.')[0]
+		print 'the number is: ', fileStr.split('_')[0]
 		classNumStr = int (fileStr.split('_')[0])
 		vectorUnderTest = img2vector('testDigits/%s' %fileNameStr)
 		classifierResult = classify0(vectorUnderTest,trainingMat,hwLabels,3)
