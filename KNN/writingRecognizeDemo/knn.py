@@ -80,7 +80,7 @@ def img2vector(filename):
 	for i in range(32):
 		lineStr = fr.readline()
 		for j in range(32):
-			returnVect[0,32*i*j] = int(lineStr[j])
+			returnVect[0,32*i+j] = int(lineStr[j])
 	return returnVect
 
 def handwritingClassTest():
