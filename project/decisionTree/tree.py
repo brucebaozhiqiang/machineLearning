@@ -15,7 +15,7 @@ def calcShannonEnt(dataSet):
 		currentLabel = featVec[-1]
 		if currentLabel not in labelCount.keys():
 			labelCount[currentLabel] = 0
-			labelCount[currentLabel] += 1
+		labelCount[currentLabel] += 1
 	shannonEnt = 0.0
 
 	for key in labelCount:
@@ -90,19 +90,27 @@ def createTree(dataSet, labels):
 	return myTree
 
 
+def storeTree(inputTree, filename):
+	import pickle
+	fw = open(filename,'w')
+	pickle.dump(inputTree, fw)
+	fw.close()
 
-        
-
-
-
-
+def grabTree(filename):
+	import  pickle
+	fr = open(filename)
+	return pickle.load(fr)
 
 
 
 if __name__ == '__main__':
-	dataSet, labels = createDataSet()
-	#print calcShannonEnt(dataSet)
-	chooseBestFeatureToSplit(dataSet)
+	fr = open('lenses.txt')
+	lenses = [inst.strip().split('\t') for inst in fr.readlines()]
+	lensesLabels = ['age','prescript','astigmatic','tearRate']
+	lensesTree = createTree(lenses, lensesLabels)
+	storeTree(lensesTree, './decisionTree')
+	print lensesTree
+
 
 
 
