@@ -35,7 +35,10 @@ def file2matrix(filename):
 	for line in arrayOfLines:
 		line = line.strip()  #去除每行后面的换行符
 		listFromLine  = line.split('\t')
-		returnMat[index:] = listFromLine[0:3]
+		returnMat[index,:] = listFromLine[0:3]
+		if index<3:
+			print returnMat
+			print "\n"
 		index += 1
 		classLabelVector.append(int(listFromLine[-1]))
 	return returnMat, classLabelVector
@@ -77,6 +80,6 @@ if __name__ == '__main__':
 	#test = classify0([0.2,0.2],group,labels,3)
 	#print test
 
-	#datingClassTest()
+	datingClassTest()
 
-	classifyperson()
+	#classifyperson()
